@@ -1,0 +1,24 @@
+services:
+  postgis:
+    image: postgis/postgis:17-3.5-alpine
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: postgres # user: postgres
+
+  grafana:
+    image: grafana/grafana:11.5.2
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana:rw
+      - ./dataset:/dataset:ro
+
+volumes:
+  pg_data:
+  grafana_data:
