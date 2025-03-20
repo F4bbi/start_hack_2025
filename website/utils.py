@@ -35,6 +35,27 @@ LAND_COVER_TYPES = {
     255: "Unclassified",
 }
 
+LAND_COVER_COLORS = {
+    "Water Bodies": "#1f77b4",
+    "Evergreen Needleleaf Forests": "#7f7f7f",
+    "Evergreen Broadleaf Forests": "#2ca02c",
+    "Deciduous Needleleaf Forests": "#d62728",
+    "Deciduous Broadleaf Forests": "#9467bd",
+    "Mixed Forests": "#8c564b",
+    "Closed Shrublands": "#e377c2",
+    "Open Shrublands": "#ff7f0e",
+    "Woody Savannas": "#1f77b4",
+    "Savannas": "#17becf",
+    "Grasslands": "#64700f",
+    "Permanent Wetlands": "#ff7f0e",
+    "Croplands": "#bcbd22",
+    "Urban and Built-up Lands": "#7f7f7f",
+    "Cropland/Natural Vegetation Mosaics": "#9467bd",
+    "Permanent Snow and Ice": "#e377c2",
+    "Barren": "#8c564b",
+    "Unclassified": "#d62728",
+}
+
 
 # @st.cache_data
 # @st.cache_resource
@@ -51,6 +72,7 @@ def create_chart(file: Path) -> Figure:
         zoom=6.7,
         color="value",
         color_continuous_scale="viridis",
+        color_discrete_map=LAND_COVER_COLORS,
         map_style="carto-darkmatter",
         height=700,
     )
