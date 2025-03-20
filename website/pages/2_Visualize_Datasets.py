@@ -121,20 +121,25 @@ std: [103, 76, 136, 97, 103, 101, 115, 91, 109, 88, 160, 90, 148, 103, 155, 100,
         st.session_state.messages = [{"role": "system", "content": SYSTEM_PROMPT}]
         # st.session_state.messages = []
 
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🤖Chat with AI")
+
+    chat_container = st.sidebar.container()
+
     for message in st.session_state.messages:
         if message["role"] == "system":
             continue
 
-        with st.sidebar.chat_message(message["role"]):
-            st.sidebar.markdown(message["content"])
+        with chat_container.chat_message(message["role"]):
+            chat_container.markdown(message["content"])
 
-    if prompt := st.sidebar.chat_input("What is up?"):
+    if prompt := chat_container.chat_input("What is up?"):
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        with st.sidebar.chat_message("user"):
-            st.sidebar.markdown(prompt)
+        with chat_container.chat_message("user"):
+            chat_container.markdown(prompt)
 
-        with st.sidebar.chat_message("assistant"):
+        with chat_container.chat_message("assistant"):
             stream = client.chat.completions.create(
                 model="mixtral",
                 # model="mixtral8x22b",
@@ -144,7 +149,7 @@ std: [103, 76, 136, 97, 103, 101, 115, 91, 109, 88, 160, 90, 148, 103, 155, 100,
                 ],
                 stream=True,
             )
-            response = st.sidebar.write_stream(stream)
+            response = chat_container.write_stream(stream)
 
         st.session_state.messages.append({"role": "assistant", "content": response})
 
