@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from plotly.graph_objs import Figure
 
 BASE_DATA_FOLDER = Path("../dataset/csv/")
 
@@ -16,16 +17,15 @@ DATA_LIST = {
 
 @st.cache_data
 @st.cache_resource
-def create_chart(file):
+def create_chart(file: str) -> Figure:
     df = pd.read_csv(file)
 
-    fig = px.scatter(
+    fig = px.scatter_map(
         df,
-        x="lon",
-        y="lat",
+        lat="lat",
+        lon="lon",
         color="value",
         color_continuous_scale="viridis",
-        # symbol="value",
     )
     fig.update_layout(
         height=600,
