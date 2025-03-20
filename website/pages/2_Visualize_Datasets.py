@@ -49,7 +49,7 @@ year = st.sidebar.slider(
     "Select year",
     min_value=int(years[0]),
     max_value=int(years[-1]),
-    value=2023 if 2023 in years else years[0],
+    value=2023 if 2023 in years else 2020,
     step=years[1] - years[0],
 )
 
