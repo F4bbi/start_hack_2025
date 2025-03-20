@@ -20,6 +20,8 @@ DATA_LIST = {
 def create_chart(file: str) -> Figure:
     df = pd.read_csv(file)
 
+    # df["color_label"] = df["value"].astype(str)
+
     fig = px.scatter_map(
         df,
         lat="lat",
@@ -27,13 +29,10 @@ def create_chart(file: str) -> Figure:
         zoom=6.7,
         color="value",
         color_continuous_scale="viridis",
-    )
-    fig.update_layout(
         height=700,
-        xaxis=dict(scaleanchor="y", visible=False),
-        yaxis=dict(visible=False),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
+        # category_orders={
+        #     "color_label": ["gogo7", "gogo10", "gogo12", "gogo13", "gogo16"]
+        # },
     )
     return fig
 
