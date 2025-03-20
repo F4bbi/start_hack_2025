@@ -89,7 +89,7 @@ if chart_type == "Temperature & Precipitation":
         df,
         x="lon",
         y="lat",
-        color="value",
+        color="precipitation",
         color_continuous_scale="viridis",
     )
 
