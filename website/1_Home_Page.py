@@ -35,19 +35,11 @@ By harnessing **Earth observation data** and **geospatial technology**, we can: 
 """)
 st.markdown("---")
 st.markdown("""
-<<<<<<< Updated upstream
 ## 🎯 What we have built
 🔹 **Interactive Dashboards** - Data-driven insights on climate, land, and population over the last decades. \\
 🔹 **Machine Learning Models** - Predicting future land cover changes and climate trends. \\
 🔹 **Correlation Analysis** - Relationships between climate variables and vegetation health. \\
 🔹 **Chatbot** - AI-powered assistant for land restoration queries.
-=======
-## 🎯 What We Have Built
-🔹 **Interactive Dashboards** - Data-driven insights on land cover change over the past two decades.  
-🔹 **Country Profiles** - In-depth analysis of national and sub-national land trends.  
-🔹 **Trend Identification** - Detecting key patterns in vegetation productivity, land degradation, and recovery.  
-🔹 **Restoration Strategies** - Tailored recommendations for policymakers and stakeholders.  
->>>>>>> Stashed changes
 
 Through this **hackathon**, we invite innovators to develop solutions that contribute to global land restoration, empower communities, and drive meaningful environmental change.
 """)

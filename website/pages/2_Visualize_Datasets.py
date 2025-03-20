@@ -3,8 +3,16 @@ from openai import OpenAI
 
 from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
+# configure page
+st.set_page_config(
+    page_title="Sahel Desert Visualizer",
+    page_icon="🏜️",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
 page = {
-    "🌧️ Precipitation": { "name": "precipitation", "upper_name": "Precipitation", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_precipitazioni.mp4", "start_date": "2010", "end_date": "2040",
+    "🌧️ Precipitation": { "name": "precipitation", "upper_name": "Precipitation", "timelapse": "static/video/timelapse_precipitazioni.mp4", "start_date": "2010", "end_date": "2040",
                           "insights":
     """
         In 2010, rainfall levels were notably high throughout the year, marking an exceptional period of precipitation. However, in the subsequent years, precipitation levels stabilized, showing a relatively consistent pattern up to the present day.
@@ -13,7 +21,7 @@ page = {
 
         These trends highlight the persistent climatic challenges in the region and underline the importance of sustainable water resource management strategies to mitigate the effects of prolonged dry conditions in northern areas while optimizing agricultural potential in the south.
     """},
-    "⛽️ Gross Primary Production": { "name": "gross primary production", "upper_name": "Gross Primary Production", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_gross.mp4", "start_date": "2010", "end_date": "2023", 
+    "⛽️ Gross Primary Production": { "name": "gross primary production", "upper_name": "Gross Primary Production", "timelapse": "static/video/timelapse_gross.mp4", "start_date": "2010", "end_date": "2023", 
                         "insights": """
 The analysis of gross primary production (GPP) in the Sahel region over time indicates a remarkable consistency, with little variation across the years. This stability suggests that the region's overall capacity for biomass production has remained largely unchanged despite environmental and socio-economic developments.
 
@@ -23,7 +31,7 @@ One possible explanation for the overall stability of GPP is the relatively slow
 
 This pattern underscores the resilience of the region's natural productivity but also highlights critical challenges. The lower GPP in the central and southern areas suggests limited agricultural potential, which could affect food security and economic development. Meanwhile, the high production levels in the northwest present opportunities for sustainable resource management, provided that environmental balance is maintained.
                         """},
-    "🌿 Land Cover": { "name": "land cover", "upper_name": "Land Cover", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_land.mp4", "start_date": "2010", "end_date": "2023",
+    "🌿 Land Cover": { "name": "land cover", "upper_name": "Land Cover", "timelapse": "static/video/timelapse_land.mp4", "start_date": "2010", "end_date": "2023",
                       "insights": """
 The analysis of land cover in the Sahel region over time reveals a largely stable distribution of ecosystem types, with minimal overall change. The northern areas remain predominantly barren, characterized by arid and desert landscapes with little to no vegetation. In contrast, the central and southern regions are consistently dominated by grasslands, which form the primary vegetation cover across most of the area.
 
@@ -33,7 +41,7 @@ Urban land and croplands, while present, remain exceptionally rare. Only a few s
 
 Overall, the stability of land cover in the Sahel highlights the resilience of its ecosystems but also underscores the challenges of development in the region. The persistence of barren land in the north and the predominance of grasslands elsewhere suggest limited opportunities for large-scale agricultural expansion. However, the sporadic emergence of shrublands and the rare presence of croplands may indicate potential areas where land use could evolve in response to environmental or socio-economic changes.
                       """},
-    "🧍🏻 Population Density": { "name": "population density", "upper_name": "Population Density", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_population.mp4", "start_date": "2010", "end_date": "2035", 
+    "🧍🏻 Population Density": { "name": "population density", "upper_name": "Population Density", "timelapse": "static/video/timelapse_population.mp4", "start_date": "2010", "end_date": "2035", 
                                 "insights": """
 The population density in the Sahel region remains exceptionally low, with an average of only 8 inhabitants per square kilometer across the entire area. However, there is a notable concentration of population in the central region, where densities range between 1,000 and 2,000 inhabitants per square kilometer. This pattern suggests that certain environmental factors—potentially a balance between sufficient rainfall and manageable aridity—make this area more suitable for human settlement compared to the harsher conditions of the surrounding regions.
 
