@@ -1,0 +1,6 @@
+[project]
+name = "sahel-visualizer"
+version = "1.0.0"
+description = "A visualizer tool for Sahel region"
+requires-python = ">=3.13"
+dependencies = ["pandas==2.2.3", "plotly==6.0.1", "streamlit==1.43.2"]
