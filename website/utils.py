@@ -3,12 +3,11 @@ import requests
 import streamlit as st
 
 # Coordinates for various locations in the Sahel region
-SAHEL_LOCATIONS = {
-    "Dakar, Senegal": {"lat": 14.7167, "lon": -17.4677},
-    "Bamako, Mali": {"lat": 12.6392, "lon": -8.0029},
-    "Niamey, Niger": {"lat": 13.5137, "lon": 2.1098},
-    "Khartoum, Sudan": {"lat": 15.5007, "lon": 32.5599},
-    "N'Djamena, Chad": {"lat": 12.1348, "lon": 15.0557},
+DATA_LIST = {
+    "climate_precipitation": {"name": "Precipitation"},
+    "gross_primary": {"name": "Gross primary production"},
+    "land_cover": {"name": "Land cover"},
+    "population_density": {"name": "Population density"},
 }
 
 # Weather variables and their user-friendly names
