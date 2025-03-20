@@ -54,7 +54,7 @@ def create_chart(file: Path) -> Figure:
         height=700,
     )
 
-    fig.update_traces(marker=dict(size=max(3, 7200 / len(df))))
+    fig.update_traces(marker=dict(size=max(3, 9000 / len(df))))
 
     return fig
 

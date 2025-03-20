@@ -53,6 +53,14 @@ year = st.sidebar.slider(
     step=years[1] - years[0],
 )
 
+# Download button
+st.sidebar.download_button(
+    label="Download CSV",
+    data=files[0].read_bytes(),
+    file_name=f"{selected_location[0]}-{year}.csv",
+    mime="text/csv",
+)
+
 # Show basic info about the data
 st.markdown(f"### {selected_location[1]['name']} for year {year}")
 
