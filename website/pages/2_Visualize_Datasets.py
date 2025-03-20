@@ -3,21 +3,47 @@ from openai import OpenAI
 
 from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
-# Configure page
-st.set_page_config(
-    page_title="Sahel Desert Visualizer",
-    page_icon="🏜️",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+page = {
+    "🌧️ Precipitation": { "name": "precipitation", "upper_name": "Precipitation", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_precipitazioni.mp4", "start_date": "2010", "end_date": "2040",
+                          "insights":
+    """
+        In 2010, rainfall levels were notably high throughout the year, marking an exceptional period of precipitation. However, in the subsequent years, precipitation levels stabilized, showing a relatively consistent pattern up to the present day.
 
-# Title and description
-st.title("🏜️ Sahel Desert Visualizer")
-st.markdown("""
-    Explore the climate and environmental data of the Sahel region in Africa using this interactive dashboard.
-    This dashboard provides insights into various datasets, including population density, gross primary productivity, and climate precipitation.
-    Select the data you want to see and download the CSV file for further analysis.
-""")
+        A geographical disparity is also evident in the distribution of rainfall. The southern areas of the Sahel have consistently received moderate to substantial rainfall, supporting local ecosystems and agriculture. In contrast, the northern parts of the region have experienced minimal precipitation, reinforcing the prevailing arid conditions characteristic of the area.
+
+        These trends highlight the persistent climatic challenges in the region and underline the importance of sustainable water resource management strategies to mitigate the effects of prolonged dry conditions in northern areas while optimizing agricultural potential in the south.
+    """},
+    "⛽️ Gross Primary Production": { "name": "gross primary production", "upper_name": "Gross Primary Production", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_gross.mp4", "start_date": "2010", "end_date": "2023", 
+                        "insights": """
+The analysis of gross primary production (GPP) in the Sahel region over time indicates a remarkable consistency, with little variation across the years. This stability suggests that the region's overall capacity for biomass production has remained largely unchanged despite environmental and socio-economic developments.
+
+However, significant geographical differences are evident. The central and southern areas of the region consistently exhibit lower GPP values, reflecting the arid and semi-arid conditions that limit vegetation growth. In contrast, the northwestern areas show notably high levels of primary production, exceeding 60,000 kg_C/m²/year. This disparity may be attributed to localized climatic and ecological factors, such as variations in soil fertility, water availability, and vegetation density.
+
+One possible explanation for the overall stability of GPP is the relatively slow population growth in the Sahel, which has resulted in minimal changes in land use and resource exploitation. Additionally, the persistence of the region's natural flora, particularly in the northwestern zones, has likely played a key role in maintaining high production levels in certain areas. Unlike regions undergoing rapid deforestation or agricultural expansion, the Sahel's vegetation cover has remained relatively stable, supporting a consistent level of biomass production.
+
+This pattern underscores the resilience of the region's natural productivity but also highlights critical challenges. The lower GPP in the central and southern areas suggests limited agricultural potential, which could affect food security and economic development. Meanwhile, the high production levels in the northwest present opportunities for sustainable resource management, provided that environmental balance is maintained.
+                        """},
+    "🌿 Land Cover": { "name": "land cover", "upper_name": "Land Cover", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_land.mp4", "start_date": "2010", "end_date": "2023",
+                      "insights": """
+The analysis of land cover in the Sahel region over time reveals a largely stable distribution of ecosystem types, with minimal overall change. The northern areas remain predominantly barren, characterized by arid and desert landscapes with little to no vegetation. In contrast, the central and southern regions are consistently dominated by grasslands, which form the primary vegetation cover across most of the area.
+
+Despite this general stability, some localized variations have been observed. Open shrublands appear intermittently, fluctuating over time without establishing a long-term presence in any specific area. This variability may be influenced by periodic climatic shifts, grazing pressure, or small-scale land use changes.
+
+Urban land and croplands, while present, remain exceptionally rare. Only a few scattered points of human settlement and agricultural development have been detected, indicating that large-scale urbanization and intensive farming have not yet significantly altered the Sahel’s landscape. The scarcity of these land cover types suggests that the region remains largely shaped by natural processes rather than extensive human intervention.
+
+Overall, the stability of land cover in the Sahel highlights the resilience of its ecosystems but also underscores the challenges of development in the region. The persistence of barren land in the north and the predominance of grasslands elsewhere suggest limited opportunities for large-scale agricultural expansion. However, the sporadic emergence of shrublands and the rare presence of croplands may indicate potential areas where land use could evolve in response to environmental or socio-economic changes.
+                      """},
+    "🧍🏻 Population Density": { "name": "population density", "upper_name": "Population Density", "timelapse": "/Users/fabbi/Coding/start_hack_2025/timelapse/timelapse_population.mp4", "start_date": "2010", "end_date": "2035", 
+                                "insights": """
+The population density in the Sahel region remains exceptionally low, with an average of only 8 inhabitants per square kilometer across the entire area. However, there is a notable concentration of population in the central region, where densities range between 1,000 and 2,000 inhabitants per square kilometer. This pattern suggests that certain environmental factors—potentially a balance between sufficient rainfall and manageable aridity—make this area more suitable for human settlement compared to the harsher conditions of the surrounding regions.
+
+Despite the overall low population density, a gradual increase has been observed over the years. While this growth remains moderate, it reflects a slow but steady demographic expansion, likely influenced by improved living conditions, migration patterns, or slight changes in land use.
+
+The persistence of low population density across most of the Sahel highlights the region’s challenging living conditions, including water scarcity, limited agricultural potential, and extreme climatic variability. The central concentration of inhabitants may indicate pockets of greater environmental suitability, where conditions allow for more sustainable livelihoods. However, the slow growth trend suggests that large-scale urbanization or intensive land use transformation remains unlikely in the near future.
+
+Understanding these dynamics is crucial for planning sustainable development strategies, ensuring that resources are allocated effectively while preserving the delicate ecological balance of the region.
+                                """},
+}
 
 # Sidebar
 st.sidebar.title("Settings")
@@ -29,6 +55,19 @@ selected_location = st.sidebar.selectbox(
     index=0,
     format_func=lambda x: x[1]["name"],
 )
+
+choice = selected_location[1]['name']
+
+# Dynamic title and subtitle
+page_title = choice
+page_section = page[choice]["name"]
+page_subtitle = f"In this page, you can visualize the data about {page_section} for the Sahel region in Africa.\
+    The data is based on historical records and predictions for the future. Below you can also see some data analysis and insights based on the {page_section} data, \
+    and if you want you can download the data as a CSV file and use it for your analysis."
+
+# Display updated title and subtitle
+st.title(page_title)
+st.markdown(page_subtitle)
 
 files = [
     file.resolve()
@@ -62,14 +101,16 @@ st.sidebar.download_button(
     mime="text/csv",
 )
 
-col1, col2 = st.columns([0.7, 2])
+if year >= 2024:
+    col1, col2 = st.columns([1, 2])
 
-with col1:
-    st.markdown(f"### {selected_location[1]['name']} for year {year}")
+    with col1:
+        st.markdown(f"### {page[choice]["upper_name"]} for year {year}")
 
-with col2:
-    if year >= 2024:
+    with col2:
         st.warning("⚠️ This is a prediction based on historical data.")
+else:
+    st.markdown(f"### {page[choice]["upper_name"]} for year {year}")
 
 # Display selected chart based on user choice
 for file in files:
@@ -79,6 +120,14 @@ for file in files:
 # Display the chart
 plot(st.session_state[f"{selected_location[0]}-{year}.csv"])
 
+st.markdown("## ⏳ Timelapse of the data")
+video_file = open(page[choice]["timelapse"], "rb")
+video_bytes = video_file.read()
+st.markdown(f"In this section you can see a timelapse of the {page[choice]['name']} data from {page[choice]['start_date']} to {page[choice]['end_date']}.")
+st.video(video_bytes)
+
+st.markdown("## 🔎 Insights & Analysis based on the data")
+st.markdown(page[choice]["insights"])
 
 def ai_chat():
     AI_API_ENDPOINT = st.secrets["AI_API_ENDPOINT"]

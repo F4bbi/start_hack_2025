@@ -8,10 +8,10 @@ from plotly.graph_objs import Figure
 BASE_DATA_FOLDER = Path("../dataset/csv/")
 
 DATA_LIST = {
-    "climate_precipitation": {"name": "Precipitation"},
-    "gross_primary": {"name": "Gross primary production"},
-    "land_cover": {"name": "Land cover"},
-    "population_density": {"name": "Population density"},
+    "climate_precipitation": {"name": "🌧️ Precipitation"},
+    "gross_primary": {"name": "⛽️ Gross Primary Production"},
+    "land_cover": {"name": "🌿 Land Cover"},
+    "population_density": {"name": "🧍🏻 Population Density"},
 }
 
 LAND_COVER_TYPES = {
