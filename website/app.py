@@ -9,7 +9,6 @@ from utils import DATA_LIST
 BASE_DATA_FOLDER = Path("../dataset/csv/")
 
 
-@st.cache_resource
 def create_chart(file):
     df = pd.read_csv(file)
 
@@ -28,6 +27,12 @@ def create_chart(file):
         plot_bgcolor="rgba(0,0,0,0)",
     )
     return fig
+
+
+@st.cache_data
+@st.cache_resource
+def plot(chart):
+    st.plotly_chart(chart, use_container_width=True)
 
 
 # Configure page
@@ -73,23 +78,26 @@ years = sorted(
 
 
 # Year range
-year, _ = st.sidebar.slider(
+year = st.sidebar.slider(
     "Select year range",
     min_value=int(years[0]),
     max_value=int(years[-1]),
-    value=(int(years[0]), int(years[-1])),
+    value=int(years[0]),
+    step=years[1] - years[0],
 )
 
 # Show basic info about the data
 st.markdown(f"### {selected_location[1]['name']} for year {year}")
 
 # Display selected chart based on user choice
-charts = {}
 for file in files:
-    charts[f"{str(file.parent.name)}-{file.name}"] = create_chart(str(file))
+    if f"{str(file.parent.name)}-{file.name}" not in st.session_state:
+        st.session_state[f"{str(file.parent.name)}-{file.name}"] = create_chart(
+            str(file)
+        )
 
-# Mostrare il grafico
-st.plotly_chart(charts[f"{selected_location[0]}-{year}.csv"], use_container_width=True)
+# Display the chart
+plot(st.session_state[f"{selected_location[0]}-{year}.csv"])
 
 st.markdown("""
 This chart shows the relationship between temperature and precipitation throughout the year.
