@@ -53,6 +53,9 @@ def create_chart(file: Path) -> Figure:
         color_continuous_scale="viridis",
         height=700,
     )
+
+    fig.update_traces(marker=dict(size=max(3, 7200 / len(df))))
+
     return fig
 
 
