@@ -14,9 +14,9 @@ st.set_page_config(
 # Title and description
 st.title("🏜️ Sahel Desert Visualizer")
 st.markdown("""
-    Explore the weather patterns of the Sahel desert region through interactive visualizations.
-    This dashboard provides insights into temperature, precipitation, humidity, and wind patterns
-    throughout the year across multiple locations in the Sahel.
+    Explore the climate and environmental data of the Sahel region in Africa using this interactive dashboard.
+    This dashboard provides insights into various datasets, including population density, gross primary productivity, and climate precipitation.
+    Select the data you want to see and download the CSV file for further analysis.
 """)
 
 # Sidebar

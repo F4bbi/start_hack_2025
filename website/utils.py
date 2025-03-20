@@ -84,5 +84,5 @@ def create_chart(file: Path) -> Figure:
 
 # @st.cache_data
 # @st.cache_resource
-def plot(chart: Figure):
-    st.plotly_chart(chart, use_container_width=True)
+def plot(chart: Figure, key: str = ""):
+    st.plotly_chart(chart, use_container_width=True, key=key)
