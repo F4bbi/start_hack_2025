@@ -1,33 +1,6 @@
-import pandas as pd
-import plotly.express as px
 import streamlit as st
 
-from pathlib import Path
-
-from utils import DATA_LIST
-
-BASE_DATA_FOLDER = Path("../dataset/csv/")
-
-@st.cache_resource
-def create_chart(file):
-    df = pd.read_csv(file)
-
-    fig = px.scatter(
-        df,
-        x="lon",
-        y="lat",
-        color="value",
-        color_continuous_scale="viridis",
-    )
-    fig.update_layout(
-        height=600,
-        xaxis=dict(scaleanchor="y", visible=False),
-        yaxis=dict(visible=False),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-    )
-    return fig
-
+from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
 # Configure page
 st.set_page_config(
@@ -72,26 +45,35 @@ years = sorted(
 
 
 # Year range
-year, _ = st.sidebar.slider(
-    "Select year range",
+year = st.sidebar.slider(
+    "Select year",
     min_value=int(years[0]),
     max_value=int(years[-1]),
-    value=(int(years[0]), int(years[-1])),
+    value=min(2023, int(years[-1])),
+    step=years[1] - years[0],
 )
 
-# Show basic info about the data
-st.markdown(f"### {selected_location[1]['name']} for year {year}")
+# Download button
+st.sidebar.download_button(
+    label="Download CSV",
+    data=files[0].read_bytes(),
+    file_name=f"{selected_location[0]}-{year}.csv",
+    mime="text/csv",
+)
+
+col1, col2 = st.columns([0.7, 2])
+
+with col1:
+    st.markdown(f"### {selected_location[1]['name']} for year {year}")
+
+with col2:
+    if year >= 2024:
+        st.warning("⚠️ This is a prediction based on historical data.")
 
 # Display selected chart based on user choice
-charts = {}
 for file in files:
-    charts[f"{str(file.parent.name)}-{file.name}"] = create_chart(str(file))
+    if f"{str(file.parent.name)}-{file.name}" not in st.session_state:
+        st.session_state[f"{str(file.parent.name)}-{file.name}"] = create_chart(file)
 
-# Mostrare il grafico
-st.plotly_chart(charts[f"{selected_location[0]}-{year}.csv"], use_container_width=True)
-
-st.markdown("""
-This chart shows the relationship between temperature and precipitation throughout the year.
-The Sahel region typically experiences a single rainy season, with the rest of the year being very dry.
-Temperature patterns often show inverse relationships with rainfall.
-""")
+# Display the chart
+plot(st.session_state[f"{selected_location[0]}-{year}.csv"])
