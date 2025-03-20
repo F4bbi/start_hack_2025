@@ -1,39 +1,6 @@
-import pandas as pd
-import plotly.express as px
 import streamlit as st
 
-from pathlib import Path
-
-from utils import DATA_LIST
-
-BASE_DATA_FOLDER = Path("../dataset/csv/")
-
-
-def create_chart(file):
-    df = pd.read_csv(file)
-
-    fig = px.scatter(
-        df,
-        x="lon",
-        y="lat",
-        color="value",
-        color_continuous_scale="viridis",
-    )
-    fig.update_layout(
-        height=600,
-        xaxis=dict(scaleanchor="y", visible=False),
-        yaxis=dict(visible=False),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-    )
-    return fig
-
-
-@st.cache_data
-@st.cache_resource
-def plot(chart):
-    st.plotly_chart(chart, use_container_width=True)
-
+from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
 # Configure page
 st.set_page_config(
@@ -98,9 +65,3 @@ for file in files:
 
 # Display the chart
 plot(st.session_state[f"{selected_location[0]}-{year}.csv"])
-
-st.markdown("""
-This chart shows the relationship between temperature and precipitation throughout the year.
-The Sahel region typically experiences a single rainy season, with the rest of the year being very dry.
-Temperature patterns often show inverse relationships with rainfall.
-""")
