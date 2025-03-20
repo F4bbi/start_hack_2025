@@ -3,10 +3,9 @@ headless = true
 port = 5000
 
 [theme]
+base = "dark"
 primaryColor = "#f0b429"
-backgroundColor = "#f9f7f1"
-secondaryBackgroundColor = "#f0f0f0"
-textColor = "#262730"
+textColor = "#f0f0f0"
 
 [client]
 toolbarMode = "minimal"
