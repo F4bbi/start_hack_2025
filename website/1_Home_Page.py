@@ -3,7 +3,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Sahel Desert Visualizer",
     page_icon="🏜️",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded",
 )
 
@@ -31,7 +31,7 @@ By harnessing **Earth observation data** and **geospatial technology**, we can: 
 ✅ Track **land cover changes** and vegetation productivity. \\
 ✅ Identify **hotspots of degradation & restoration opportunities**. \\
 ✅ Map and analyze **climate trends & resource availability**. \\
-✅ Develop **interactive dashboards** to visualize land-use patterns and inform decision-making. \\
+✅ Develop **interactive dashboards** to visualize land-use patterns and inform decision-making.
 """)
 st.markdown("---")
 st.markdown("""
