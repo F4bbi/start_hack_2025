@@ -24,11 +24,12 @@ def create_chart(file: str) -> Figure:
         df,
         lat="lat",
         lon="lon",
+        zoom=6.7,
         color="value",
         color_continuous_scale="viridis",
     )
     fig.update_layout(
-        height=600,
+        height=700,
         xaxis=dict(scaleanchor="y", visible=False),
         yaxis=dict(visible=False),
         paper_bgcolor="rgba(0,0,0,0)",
