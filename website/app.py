@@ -59,9 +59,7 @@ st.markdown(f"### {selected_location[1]['name']} for year {year}")
 # Display selected chart based on user choice
 for file in files:
     if f"{str(file.parent.name)}-{file.name}" not in st.session_state:
-        st.session_state[f"{str(file.parent.name)}-{file.name}"] = create_chart(
-            str(file)
-        )
+        st.session_state[f"{str(file.parent.name)}-{file.name}"] = create_chart(file)
 
 # Display the chart
 plot(st.session_state[f"{selected_location[0]}-{year}.csv"])
