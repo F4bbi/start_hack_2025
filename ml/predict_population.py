@@ -5,11 +5,12 @@ from statsmodels.tsa.arima.model import ARIMA
 import os
 
 # Percorso ai file CSV
-path = "dataset/csv/population_density/*.csv"
+path = "../dataset/csv/population_density/*.csv"
 files = sorted(glob.glob(path)) 
 
 # Leggiamo e uniamo i dati
 df_list = [pd.read_csv(file) for file in files]
+print(f"Numero di file letti: {len(df_list)}")
 df = pd.concat(df_list, ignore_index=True)
 
 # Creiamo una lista di pixel unici
@@ -20,8 +21,8 @@ output_path = "ml/population_predictions/"
 os.makedirs(output_path, exist_ok=True)
 
 # Anni disponibili nel dataset
-available_years = [2010, 2015, 2020]
-future_year = 2025  # L'anno che vogliamo prevedere
+available_years = [2010, 2015, 2020, 2025, 2030]
+future_year = 2035  # L'anno che vogliamo prevedere
 
 # Dizionario per salvare le previsioni
 predictions_dict = []
@@ -64,6 +65,6 @@ for _, pixel in unique_pixels.iterrows():
 
 # Salviamo il file CSV con le previsioni per il 2025
 df_pred = pd.DataFrame(predictions_dict)
-df_pred.to_csv(f"{output_path}2025.csv", index=False)
+df_pred.to_csv(f"{output_path}2035.csv", index=False)
 
-print("Previsione per il 2025 completata e salvata!")
+print("Previsione per il 2035 completata e salvata!")
