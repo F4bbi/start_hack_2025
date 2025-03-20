@@ -51,6 +51,7 @@ def create_chart(file: Path) -> Figure:
         zoom=6.7,
         color="value",
         color_continuous_scale="viridis",
+        map_style="carto-darkmatter",
         height=700,
     )
 

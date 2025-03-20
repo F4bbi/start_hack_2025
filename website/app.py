@@ -46,7 +46,7 @@ years = sorted(
 
 # Year range
 year = st.sidebar.slider(
-    "Select year range",
+    "Select year",
     min_value=int(years[0]),
     max_value=int(years[-1]),
     value=min(2023, int(years[-1])),
@@ -61,8 +61,14 @@ st.sidebar.download_button(
     mime="text/csv",
 )
 
-# Show basic info about the data
-st.markdown(f"### {selected_location[1]['name']} for year {year}")
+col1, col2 = st.columns([0.7, 2])
+
+with col1:
+    st.markdown(f"### {selected_location[1]['name']} for year {year}")
+
+with col2:
+    if year >= 2024:
+        st.warning("⚠️ This is a prediction based on historical data.")
 
 # Display selected chart based on user choice
 for file in files:
