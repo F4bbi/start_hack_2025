@@ -1,6 +1,5 @@
 import streamlit as st
 from openai import OpenAI
-import os
 
 from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
@@ -137,8 +136,8 @@ std: [103, 76, 136, 97, 103, 101, 115, 91, 109, 88, 160, 90, 148, 103, 155, 100,
 
         with st.sidebar.chat_message("assistant"):
             stream = client.chat.completions.create(
-                # model="mixtral",
-                model="mixtral8x22b",
+                model="mixtral",
+                # model="mixtral8x22b",
                 messages=[
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
@@ -149,7 +148,7 @@ std: [103, 76, 136, 97, 103, 101, 115, 91, 109, 88, 160, 90, 148, 103, 155, 100,
 
         st.session_state.messages.append({"role": "assistant", "content": response})
 
+        st.rerun()
 
-# [{"role": "system", "content": SYSTEM_PROMPT}]
 
 ai_chat()
