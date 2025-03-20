@@ -19,14 +19,14 @@ from utils import (
 
 # Configure page
 st.set_page_config(
-    page_title="Sahel Desert Weather Visualization",
+    page_title="Sahel Desert Visualizer",
     page_icon="🏜️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # Title and description
-st.title("🏜️ Sahel Desert Weather Visualization")
+st.title("🏜️ Sahel Desert Visualizer")
 st.markdown("""
     Explore the weather patterns of the Sahel desert region through interactive visualizations.
     This dashboard provides insights into temperature, precipitation, humidity, and wind patterns
@@ -104,13 +104,6 @@ if chart_type == "Temperature & Precipitation":
 
     # Mostrare il grafico
     st.plotly_chart(fig, use_container_width=True)
-
-    # AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-    # st.plotly_chart(
-    #     create_combined_chart(df, selected_temp_var, selected_precip_var),
-    #     use_container_width=True,
-    # )
 
     st.markdown("""
     This chart shows the relationship between temperature and precipitation throughout the year.
