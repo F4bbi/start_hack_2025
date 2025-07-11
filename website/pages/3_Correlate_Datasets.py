@@ -3,8 +3,8 @@ import streamlit as st
 from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
 
 st.set_page_config(
-    page_title="Sahel Correlation Analysis",
-    page_icon="📊",
+    page_title="START Hack 2025 - Innovating for Land Restoration",
+    page_icon="🏜️",
     layout="wide",
     initial_sidebar_state="expanded",
 )

@@ -1,13 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Sahel Desert Visualizer",
+    page_title="START Hack 2025 - Innovating for Land Restoration",
     page_icon="🏜️",
     layout="centered",
     initial_sidebar_state="expanded",
 )
 
-st.title("🏜️ Innovating for Land Restoration in the Sahel")
+st.title("🏜️ Innovating for Land Restoration in the Sahel - START Hack 2025")
 st.image("static/images/banner.jpg", caption="UNCCD & G20 Global Land Initiative")
 
 st.markdown("""
