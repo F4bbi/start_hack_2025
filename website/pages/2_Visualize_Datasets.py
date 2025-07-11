@@ -1,7 +1,7 @@
 import streamlit as st
 #from openai import OpenAI
 
-from utils import BASE_DATA_FOLDER, DATA_LIST, create_chart, plot
+from utils import BASE_DATA_FOLDER, VIDEO_FOLDER, DATA_LIST, create_chart, plot
 
 # configure page
 st.set_page_config(
@@ -15,7 +15,7 @@ page = {
     "🌧️ Precipitation": {
         "name": "precipitation",
         "upper_name": "Precipitation",
-        "timelapse": "static/videos/timelapse_precipitazioni.mp4",
+        "timelapse": str(VIDEO_FOLDER / "timelapse_precipitazioni.mp4"),
         "start_date": "2010",
         "end_date": "2040",
         "insights": """
@@ -29,7 +29,7 @@ page = {
     "⛽️ Gross Primary Production": {
         "name": "gross primary production",
         "upper_name": "Gross Primary Production",
-        "timelapse": "static/videos/timelapse_gross.mp4",
+        "timelapse": str(VIDEO_FOLDER / "timelapse_gross.mp4"),
         "start_date": "2010",
         "end_date": "2023",
         "insights": """
@@ -45,7 +45,7 @@ This pattern underscores the resilience of the region's natural productivity but
     "🌿 Land Cover": {
         "name": "land cover",
         "upper_name": "Land Cover",
-        "timelapse": "static/videos/timelapse_land.mp4",
+        "timelapse": str(VIDEO_FOLDER / "timelapse_land.mp4"),
         "start_date": "2010",
         "end_date": "2023",
         "insights": """
@@ -61,7 +61,7 @@ Overall, the stability of land cover in the Sahel highlights the resilience of i
     "🧍🏻 Population Density": {
         "name": "population density",
         "upper_name": "Population Density",
-        "timelapse": "static/videos/timelapse_population.mp4",
+        "timelapse": str(VIDEO_FOLDER / "timelapse_population.mp4"),
         "start_date": "2010",
         "end_date": "2035",
         "insights": """

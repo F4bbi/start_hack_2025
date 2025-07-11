@@ -1,4 +1,5 @@
 import streamlit as st
+from utils import IMAGE_FOLDER
 
 st.set_page_config(
     page_title="START Hack 2025 - Innovating for Land Restoration",
@@ -8,7 +9,7 @@ st.set_page_config(
 )
 
 st.title("🏜️ Innovating for Land Restoration in the Sahel - START Hack 2025")
-st.image("static/images/banner.jpg", caption="UNCCD & G20 Global Land Initiative")
+st.image(str(IMAGE_FOLDER / "banner.jpg"), caption="UNCCD & G20 Global Land Initiative")
 
 st.markdown("""
 The **G20 Global Land Initiative**, launched by the **United Nations Convention to Combat Desertification (UNCCD)**, aims to halt and restore **50% of land degradation by 2040**. The goal is to promote sustainable land management, combat desertification, and foster climate resilience by leveraging **Earth observation data, geospatial insights, and technology**.
@@ -23,7 +24,7 @@ The **Sahel region** is facing severe environmental and socio-economic challenge
 - **Urban expansion** influencing vegetation patterns and ecosystem health.
 """)
 
-right_col.image("static/images/g20.png")
+right_col.image(str(IMAGE_FOLDER / "g20.png"))
 st.markdown("---")
 st.markdown("""
 ### 🔍 How Can Data Help?

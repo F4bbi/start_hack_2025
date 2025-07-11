@@ -1,13 +1,19 @@
 from pathlib import Path
 from enum import Enum
 from dataclasses import dataclass
+import sys
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 from plotly.graph_objs import Figure
 
-BASE_DATA_FOLDER = Path("../dataset/csv/")
+dir = Path(__file__).resolve()
+
+# Use absolute path relative to the project root for cloud deployment
+BASE_DATA_FOLDER = dir.parent.parent / "dataset" / "csv"
+VIDEO_FOLDER = dir.parent / "static" / "videos"
+IMAGE_FOLDER = dir.parent / "static" / "images"
 
 @dataclass
 class DatasetConfig:
